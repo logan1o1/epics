@@ -1,0 +1,38 @@
+/* navbar.css */
+
+/* Add this CSS for additional margin and vertical lines */
+.nav-link {
+  margin-right: 16px; /* Adjust the margin as needed for equal gap */
+  position: relative;
+  color: #000000; /* Text color */
+  text-decoration: none; /* Remove underline from links */
+  padding: 8px 12px; /* Adjust padding for the button */
+  border: 2px solid #000000; /* Border color */
+  border-radius: 4px; /* Border radius for rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background-color: teal-300;
+    
+}
+
+.nav-link:hover {
+  transform: scale(1.1); /* Enlargement effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+.nav-link:last-child {
+  margin-right: 0; /* Remove margin from the last item to avoid extra space */
+}
+
+/* Add this CSS for sticky positioning */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  /* Ensure a high z-index value to keep the navbar above other elements */
+  border-bottom: 1px solid #000;
+  background-color: #000000; /* Background color of the navbar */
+}
+
+/* Rest of your existing styles... */
