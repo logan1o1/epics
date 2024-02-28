@@ -21,7 +21,6 @@ app.post("/signup", async (req, resp) => {
     const user = new Users(req.body)
     let result = await user.save();
     result = result.toObject();
-    delete result.password
     resp.send(result);
 })
 
