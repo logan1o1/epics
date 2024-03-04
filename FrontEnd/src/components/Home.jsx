@@ -20,6 +20,19 @@ const Home = () => {
       {/* Section 1: Background Image */}
       <section className="relative bg-image-section mt-20">
         <div className="bg-image-container relative">
+          {/* Added overlay for mental health awareness */}
+          <div className="overlay">
+            <h1 className="text-4xl text-white font-bold">
+              You Are Not Alone
+            </h1>
+            <p className="text-lg text-white mt-2">
+              Let's Talk About Mental Health
+            </p>
+            <div className="mental-health-symbol">
+              {/* Add your animated mental health symbol here */}
+            </div>
+          </div>
+          {/* End overlay */}
           <img src="/Images/BGI1.png" alt="Background" className="bg-image" />
 
           {/* CBot Button */}

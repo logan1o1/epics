@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -9,22 +8,25 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post('http://localhost:3001/login', {
-        username,
-        password,
+      const response = await fetch('http://localhost:4001/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: username, password }),
       });
-
-      if (response.data.success) {
-        // Successful login logic (redirect, set user in state, etc.)
-        console.log('Login successful!');
+      const data = await response.json();
+      if (response.ok) {
+        
+        console.log(data);
       } else {
-        setError(response.data.message);
+        
+        setError(data.result);
       }
     } catch (error) {
-      console.error('Error during login:', error);
-      setError('Internal server error');
+      console.error('Error:', error);
+      setError('User Not Found.');
     }
   };
 
@@ -64,14 +66,12 @@ const Login = () => {
               required
             />
           </div>
-          <NavLink to="/login" className="w-full">
-            <button
-              type="submit"
-              className="bg-cyan-500 text-white rounded-md px-4 py-2 hover:bg-cyan-600 focus:outline-none focus:ring focus:border-cyan-300 w-full"
-            >
-              Log in
-            </button>
-          </NavLink>
+          <button
+            type="submit"
+            className="bg-cyan-500 text-white rounded-md px-4 py-2 hover:bg-cyan-600 focus:outline-none focus:ring focus:border-cyan-300 w-full"
+          >
+            Log in
+          </button>
         </form>
         <p className="text-cyan-600 mt-4 text-center">
           Don't have an account?{' '}

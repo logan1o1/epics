@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -10,23 +9,25 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post('http://localhost:3001/signup', {
-        username,
-        email,
-        password,
+      const response = await fetch('http://localhost:4001/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }),
       });
-
-      if (response.data.success) {
-        // Successful signup logic (redirect, set user in state, etc.)
-        console.log('Sign up successful!');
+      const data = await response.json();
+      if (response.ok) {
+        // Signup successful, do something (e.g., redirect)
+        console.log(data);
       } else {
-        setError(response.data.message);
+        // Signup failed, display error message
+        setError(data.error || 'Sign up failed');
       }
     } catch (error) {
-      console.error('Error during signup:', error);
-      setError('Internal server error');
+      console.error('Error:', error);
+      setError('An error occurred, please try again later.');
     }
   };
 
@@ -79,14 +80,12 @@ const SignUp = () => {
               required
             />
           </div>
-          <NavLink to="/signup" className="w-full">
-            <button
-              type="submit"
-              className="bg-cyan-500 text-white rounded-md px-4 py-2 hover:bg-cyan-600 focus:outline-none focus:ring focus:border-cyan-300 w-full"
-            >
-              Sign Up
-            </button>
-          </NavLink>
+          <button
+            type="submit"
+            className="bg-cyan-500 text-white rounded-md px-4 py-2 hover:bg-cyan-600 focus:outline-none focus:ring focus:border-cyan-300 w-full"
+          >
+            Sign Up
+          </button>
         </form>
         <p className="text-cyan-600 mt-4 text-center">
           Already have an account?{' '}

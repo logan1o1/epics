@@ -1,0 +1,59 @@
+/* Home.css */
+.bg-image-section {
+    position: relative;
+  }
+  
+  .bg-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 10%;
+    left: 47%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+    width: 20%; 
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6); 
+    box-shadow: 0 px 4px rgba(0, 0, 0, 0.2); 
+    border-radius: 10px; 
+  }
+  
+  .overlay h1 {
+    font-size: 2rem;
+    color: white; 
+  }
+  
+  .overlay p {
+    font-size: 1.2rem;
+    color: white; 
+  }
+  
+  .mental-health-symbol {
+    /* Add styles for your animated mental health symbol here */
+    /* Example: */
+    /* background-image: url('path_to_your_image.gif'); */
+    /* background-size: contain; */
+    /* background-repeat: no-repeat; */
+    /* height: 100px; */
+    /* width: 100px; */
+    /* animation: yourAnimation 2s infinite; */
+  }
+  
+  /* Example of animation keyframes */
+  @keyframes yourAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  

@@ -10,7 +10,6 @@ import SignUp from './components/SignUp';
 import CBot from './components/CBot'
 import Quiz from "./components/Quiz";
 import Games from "./components/Games";
-import PSF from './components/PSF';
 import CW from './components/CW';
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
         <Route path="/cbot" element={<CBot />} />
         <Route path="/quizzes" element={<Quiz />} />
         <Route path="/games" element={<Games />} />
-        <Route path="/psf" element={<PSF />} />
         <Route path="/cw" element={<CW />} />
         
        

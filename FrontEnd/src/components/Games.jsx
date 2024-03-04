@@ -3,7 +3,7 @@ import React from 'react';
 const Games = () => {
   return (
     <div className="container mx-auto mt-24 bg-cyan-100 p-8 rounded-md">
-      <h1 className="text-4xl font-bold text-center mb-8 text-cyan-500">Games</h1>
+      <h1 className="text-4xl font-bold text-center mb-8 text-black-500">Games</h1>
 
       <div className="flex flex-wrap justify-center">
         {/* Game 1 */}
