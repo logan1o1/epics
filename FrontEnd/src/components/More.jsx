@@ -51,7 +51,7 @@ const More = () => {
             </li>
             <li>
               <Link
-                to="/peer-support-forum"
+                to="/psf"
                 className="text-white hover:text-blue-300 transition-all duration-300 block w-48 py-2"
               >
                 Peer Support Forum
@@ -67,7 +67,7 @@ const More = () => {
             </li>
             <li>
               <Link
-                to="/community-workshops"
+                to="/cw"
                 className="text-white hover:text-blue-300 transition-all duration-300 block w-48 py-2"
               >
                 Community Workshops
