@@ -5,9 +5,12 @@ import './backend/db/config.js';
 import Users  from './backend/db/Users.js';
 import Question from './backend/db/Questions.js';
 import Games from './backend/db/Games.js';
+import dotenv from 'dotenv';
+import generateTokenNsetCookies from './backend/utility/generateToken.js';
 
 
 const app = express()
+dotenv.config();
 const corsOption = {
     origin: ['http://localhost:5173'],
     credentials: true,
@@ -20,7 +23,6 @@ app.use(express.json());
 app.post("/signup", async (req, resp) => {
     const user = new Users(req.body)
     let result = await user.save();
-    result = result.toObject();
     resp.send(result);
 })
 
@@ -28,7 +30,9 @@ app.post("/login", async (req, resp) => {
     if (req.body.email && req.body.password) {
         let user = await Users.findOne(req.body).select("-password");
         if (user) {
-            resp.send(user)
+            generateTokenNsetCookies(user._id, resp);
+            const result = await user.save();
+            resp.status(200).send(result);
         } else {
             resp.send({result: "User not found"})
         }
