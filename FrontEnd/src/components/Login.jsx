@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -14,14 +14,13 @@ const Login = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: username, password }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
-      if (response.ok) {
-        
-        console.log(data);
+      if (data) {
+        setEmail(email)
+        setPassword(password)
       } else {
-        
         setError(data.result);
       }
     } catch (error) {
@@ -41,13 +40,13 @@ const Login = () => {
         <form onSubmit={handleLogin} className="max-w-md mx-auto">
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <div className="mb-4">
-            <label htmlFor="username" className="block text-cyan-700 font-semibold mb-2">
-              Username:
+            <label htmlFor="email" className="block text-cyan-700 font-semibold mb-2">
+              Email:
             </label>
             <input
               type="text"
-              id="username"
-              value={username}
+              id="email"
+              value={email}
               onChange={(e) => setUsername(e.target.value)}
               className="w-full border border-cyan-300 rounded-md px-3 py-2"
               required

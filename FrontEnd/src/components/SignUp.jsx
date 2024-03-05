@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(null);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -18,9 +19,11 @@ const SignUp = () => {
         body: JSON.stringify({ username, email, password }),
       });
       const data = await response.json();
-      if (response.ok) {
-        // Signup successful, do something (e.g., redirect)
-        console.log(data);
+      if (data) {
+        setUsername(data.username);
+        setEmail(data.email);
+        setPassword(data.password);
+        navigate("/")
       } else {
         // Signup failed, display error message
         setError(data.error || 'Sign up failed');
