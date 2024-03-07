@@ -41,11 +41,21 @@ app.post("/login", async (req, resp) => {
     }
 })
 
+app.post("/logout", async (req, res) => {
+    try {
+        res.clearCookie("access_token");
+        res.status(204).json({message: "Logged out successfully"})
+    } catch (error) {
+        console.log(error.message);
+    }
+})
+
 app.post("/questions", async (req, resp) => {
     const question = new Question(req.body);
     const result = await question.save();
     resp.send(result);
 })
+
 
 app.get("/questions", async (req, resp) => {
     const questions = await Question.find()
