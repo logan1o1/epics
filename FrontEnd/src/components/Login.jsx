@@ -47,7 +47,7 @@ const Login = () => {
               type="text"
               id="email"
               value={email}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full border border-cyan-300 rounded-md px-3 py-2"
               required
             />

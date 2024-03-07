@@ -313,12 +313,12 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="p-4 rounded-lg shadow-md hover:bg-gray-100">
             <a
-              href="path/to/resource.pdf"
+              href="https://www.globalfamilydoctor.com/site/DefaultSite/filesystem/documents/resources/MHGuidebook-EBookDownload.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-xl font-semibold text-cyan-600 mb-2"
             >
-              Stress Management Guide
+              Mental Health Care Guide
             </a>
             <p className="text-gray-500">
               Downloadable PDF with tips and strategies for managing stress.
