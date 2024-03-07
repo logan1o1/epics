@@ -11,6 +11,7 @@ import CBot from './components/CBot'
 import Quiz from "./components/Quiz";
 import Games from "./components/Games";
 import CW from './components/CW';
+import PSF from './components/psf';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/quizzes" element={<Quiz />} />
         <Route path="/games" element={<Games />} />
         <Route path="/cw" element={<CW />} />
+        <Route path="/psf" element={<PSF />} />
         
        
       </Routes>

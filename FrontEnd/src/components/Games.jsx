@@ -74,7 +74,7 @@ const Games = () => {
                 Play
               </button>
             </div>
-            <p className="text-center mt-2 text-lg font-semibold text-black">Dino Game</p>
+            <p className="text-center mt-2 text-lg font-semibold text-black">Fruit Ninja</p>
           </a>
         </div>
 
@@ -98,7 +98,7 @@ const Games = () => {
                 Play
               </button>
             </div>
-            <p className="text-center mt-2 text-lg font-semibold text-black">Fruit-Ninja</p>
+            <p className="text-center mt-2 text-lg font-semibold text-black">Dino Game</p>
           </a>
         </div>
       </div>
