@@ -4,8 +4,8 @@ const Quiz = () => {
   const [answers, setAnswers] = useState({});
   const [showReport, setShowReport] = useState(false);
   const [score, setScore] = useState(0);
-  const maxScore = 30; // Maximum possible score
-
+  const maxScore = 30;   
+  
   const handleAnswer = (question, answer, points) => {
     setAnswers({ ...answers, [question]: { answer, points } });
   };
@@ -24,7 +24,7 @@ const Quiz = () => {
         totalScore += points; // Add points for option C
       }
     });
-    // Cap the score to the maximum possible score
+    
     setScore(Math.min(totalScore, maxScore));
   };
 

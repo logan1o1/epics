@@ -1,97 +1,65 @@
-//psf.js
 import React, { useState } from "react";
-import NavBar from "./NavBar";
 
 const PSF = () => {
+  
   const [comments, setComments] = useState([]);
 
-  const handleCommentSubmit = (comment) => {
-    setComments([...comments, comment]);
+  
+  const addComment = (newComment) => {
+    setComments([...comments, { text: newComment, reactions: { like: 0, dislike: 0 }, replies: [] }]);
   };
 
-  const handleLike = (index) => {
-    // Increment likes for the comment at the specified index
+  
+  const handleLikeDislike = (index, reaction) => {
     const updatedComments = [...comments];
-    updatedComments[index].likes++;
+    updatedComments[index].reactions[reaction]++;
     setComments(updatedComments);
   };
 
-  const handleDislike = (index) => {
-    // Increment dislikes for the comment at the specified index
+    const addReply = (commentIndex, replyText) => {
     const updatedComments = [...comments];
-    updatedComments[index].dislikes++;
+    updatedComments[commentIndex].replies.push(replyText);
     setComments(updatedComments);
   };
 
   return (
-    <div className="cyan-theme">
-      <NavBar />
-      <h1>Peer Support Forum</h1>
-      <div className="comments-section">
-        <CommentBox onCommentSubmit={handleCommentSubmit} />
-        <div className="comments-list">
-          {comments.map((comment, index) => (
-            <Comment
-              key={index}
-              index={index}
-              comment={comment}
-              onLike={handleLike}
-              onDislike={handleDislike}
-            />
-          ))}
-        </div>
+    <div className="container mx-auto mt-24 bg-cyan-100 p-8 rounded-md">
+      <h1 className="text-4xl font-bold text-center mb-8 text-black">Peer Support Forum</h1>
+
+      {/* Component for adding new comments */}
+      <div className="mb-6">
+        <textarea placeholder="Write your comment here..." className="w-full mb-2 px-2 py-1 border rounded"></textarea>
+        <button onClick={() => addComment("new comment")} className="px-4 py-1 bg-cyan-500 text-white rounded">Submit</button>
       </div>
-    </div>
-  );
-};
 
-const CommentBox = ({ onCommentSubmit }) => {
-  const [commentText, setCommentText] = useState("");
-  const [personName, setPersonName] = useState("");
-
-  const handleSubmit = () => {
-    if (commentText.trim() && personName.trim()) {
-      const newComment = {
-        text: commentText,
-        person: personName,
-        likes: 0,
-        dislikes: 0,
-      };
-      onCommentSubmit(newComment);
-      setCommentText("");
-      setPersonName("");
-    }
-  };
-
-  return (
-    <div className="comment-box">
-      <textarea
-        rows="4"
-        placeholder="Write your comment..."
-        value={commentText}
-        onChange={(e) => setCommentText(e.target.value)}
-      ></textarea>
-      <input
-        type="text"
-        placeholder="Your name"
-        value={personName}
-        onChange={(e) => setPersonName(e.target.value)}
-      />
-      <button onClick={handleSubmit}>Submit</button>
-    </div>
-  );
-};
-
-const Comment = ({ comment, index, onLike, onDislike }) => {
-  return (
-    <div className="comment">
-      <p>{comment.text}</p>
-      <p>By: {comment.person}</p>
-      <button onClick={() => onLike(index)}>Like</button>
-      <span>{comment.likes}</span>
-      <button onClick={() => onDislike(index)}>Dislike</button>
-      <span>{comment.dislikes}</span>
-      <button>Reply</button>
+      {/* Display existing comments */}
+      <div>
+        {comments.length > 0 ? (
+          comments.map((comment, index) => (
+            <div key={index} className="border rounded-lg p-4 mb-4">
+              <p>{comment.text}</p>
+              <div className="flex items-center mt-2">
+                <button onClick={() => handleLikeDislike(index, "like")} className="mr-2">Like</button>
+                <span>{comment.reactions.like}</span>
+                <button onClick={() => handleLikeDislike(index, "dislike")} className="ml-2">Dislike</button>
+                <span>{comment.reactions.dislike}</span>
+              </div>
+              <div className="mt-2">
+                <input type="text" placeholder="Write a reply..." className="mr-2 px-2 py-1 border rounded" />
+                <button onClick={() => addReply(index, "new reply")} className="px-4 py-1 bg-cyan-500 text-white rounded">Reply</button>
+              </div>
+              {/* Display replies */}
+              {comment.replies.map((reply, replyIndex) => (
+                <div key={replyIndex} className="ml-4 italic mt-2">
+                  <p>{reply}</p>
+                </div>
+              ))}
+            </div>
+          ))
+        ) : (
+          <p>No comments yet.</p>
+        )}
+      </div>
     </div>
   );
 };
