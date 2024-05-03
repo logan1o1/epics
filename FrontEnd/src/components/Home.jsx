@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import YouTube from "react-youtube";
 import "./css/Home.css";
 import { FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
+import Feedback from "./Feedback";
 
 const Home = () => {
   const opts = {
@@ -370,6 +371,10 @@ const Home = () => {
           <FaTwitter className="text-4xl text-twitter-blue-600 hover:text-twitter-dark cursor-pointer" />
           <FaInstagram className="text-4xl text-red-500 hover:text-red-700 cursor-pointer" />
         </div>
+      </section>
+      {/* Feedback Form Section */}
+      <section id="feedbackSection" className="flex flex-col items-center mt-8">
+        <Feedback />
       </section>
     </div>
   );
