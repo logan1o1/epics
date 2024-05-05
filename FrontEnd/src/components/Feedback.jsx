@@ -38,7 +38,6 @@ const FeedbackContainer = () => {
       console.log(data);
       if (data) {
         console.log('Feedback submitted successfully!');
-        navigate('/thank-you');
         setUsername('');
         setFeedbackText('');
       } else {

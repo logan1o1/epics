@@ -1,21 +1,35 @@
 import express, { json } from 'express';
 import cors from 'cors';
-import './backend/db/config.js';
-import Users from './backend/db/Users.js';
-import Question from './backend/db/Questions.js';
-import Games from './backend/db/Games.js';
-import Feedbacks from './backend/db/Feedback.js';
+import Users from './db/Users.js';
+import Question from './db/Questions.js';
+import Games from './db/Games.js';
+import Feedbacks from './db/Feedback.js';
 import dotenv from 'dotenv';
-import generateTokenNsetCookies from './backend/utility/generateToken.js';
+import generateTokenNsetCookies from './utility/generateToken.js';
+import mongoose from 'mongoose';
+import path from "path";
 
 
 const app = express()
-dotenv.config();
+
+dotenv.config()
+mongoose
+    .connect(process.env.MONGO)
+    .then(() => {
+        console.log('Connected to MongoDB!');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    const __dirname = path.resolve();
+
 const corsOption = {
-    origin: ['http://localhost:5173'],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+origin: ['http://localhost:5173'],
+credentials: true,
+methods: ["GET", "POST", "PUT", "DELETE"],
 }
+
 app.use(cors(corsOption))
 app.use(express.json());
 
@@ -109,4 +123,10 @@ app.get("/games", async (req, resp) => {
     }
 })
 
-app.listen(4001)
+app.listen(4001, () => console.log("Server running on port 4001"));
+
+app.use(express.static(path.join(__dirname, '/FrontEnd/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'FrontEnd', 'dist', 'index.html'))
+})
