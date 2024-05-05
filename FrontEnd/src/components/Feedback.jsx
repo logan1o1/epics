@@ -8,9 +8,6 @@ const FeedbackContainer = () => {
   const [feedbackList, setFeedbackList] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchFeedbackData();
-  }, []);
 
   const fetchFeedbackData = async () => {
     try {
@@ -38,21 +35,24 @@ const FeedbackContainer = () => {
         body: JSON.stringify({ username, feedback: feedbackText }),
       });
       const data = await response.json();
-      if (response.ok) {
+      console.log(data);
+      if (data) {
         console.log('Feedback submitted successfully!');
         navigate('/thank-you');
         setUsername('');
         setFeedbackText('');
-        
-        setFeedbackList([...feedbackList, data]);
       } else {
-        setError(data.result); 
+        console.log("no data")
       }
     } catch (error) {
       console.error('Error:', error);
       setError('Failed to submit feedback.');
     }
   };
+
+  useEffect(() => {
+    fetchFeedbackData();
+  }, [handleSubmit]);
 
   return (
     <div className="flex border border-gray-300 rounded-lg overflow-hidden">
