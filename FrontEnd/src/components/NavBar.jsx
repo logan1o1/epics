@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import More from "./More";
 import InteractiveFeatures from "./InteractiveFeatures";
 import "./css/navbar.css";
 
 const NavBar = () => {
-  const [curUser, setCurUser] = useState(null)
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("cur_user"));
-    if (user) {
-      setCurUser(user);
-    }
-  }, [])
+  const user = JSON.parse(localStorage.getItem("cur_user"));
 
   const handleSignout = async () => {
     await fetch('https://epics-8d25.onrender.com/logout');
-    setCurUser(null);
     localStorage.removeItem("cur_user")
   }
 
