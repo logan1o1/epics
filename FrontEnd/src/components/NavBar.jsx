@@ -6,7 +6,7 @@ import "./css/navbar.css";
 
 const NavBar = () => {
 
-  const curUser = localStorage.getItem("cur_user");
+  const curUser = JSON.parse(localStorage.getItem("cur_user"));
 
   const handleSignout = async () => {
     await fetch('https://behind-the-smiles.onrender.com/logout', {
