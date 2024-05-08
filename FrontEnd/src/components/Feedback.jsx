@@ -11,7 +11,7 @@ const FeedbackContainer = () => {
 
   const fetchFeedbackData = async () => {
     try {
-      const response = await fetch('http://localhost:4001/getFeedback');
+      const response = await fetch('https://behind-the-smiles.onrender.com/getFeedback');
       const data = await response.json();
       if (response.ok) {
         setFeedbackList(data);
@@ -27,7 +27,7 @@ const FeedbackContainer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:4001/postFeedback', {
+      const response = await fetch('https://behind-the-smiles.onrender.com/postFeedback', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

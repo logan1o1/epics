@@ -11,7 +11,7 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:4001/signup', {
+      const response = await fetch('https://behind-the-smiles.onrender.com/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -20,9 +20,7 @@ const SignUp = () => {
       });
       const data = await response.json();
       if (data) {
-        setUsername(data.username);
-        setEmail(data.email);
-        setPassword(data.password);
+        localStorage.setItem("cur_user", JSON.stringify(data));
         navigate("/")
       } else {
         // Signup failed, display error message

@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:4001/login', {
+      const response = await fetch('https://behind-the-smiles.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -19,6 +19,7 @@ const Login = () => {
       });
       const data = await response.json();
       if (data) {
+        localStorage.setItem("cur_user", JSON.stringify(data));
         navigate("/")
       } else {
         setError(data.result);
