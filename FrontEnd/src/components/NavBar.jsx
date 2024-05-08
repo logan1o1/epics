@@ -1,10 +1,24 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import More from './More';
-import InteractiveFeatures from './InteractiveFeatures';
-import './css/navbar.css';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import More from "./More";
+import InteractiveFeatures from "./InteractiveFeatures";
+import "./css/navbar.css";
 
 const NavBar = () => {
+
+  const curUser = localStorage.getItem("cur_user");
+
+  const handleSignout = async () => {
+    await fetch('https://behind-the-smiles.onrender.com/logout', {
+      method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+    });
+
+    localStorage.removeItem("cur_user")
+  }
+
   return (
     <header className="shadow z-60 top-0">
       <nav className="bg-gradient-to-r from-blue-700 to-blue-800 border-b-2 border-blue-800 px-4 lg:px-6 py-2.5">
@@ -32,20 +46,40 @@ const NavBar = () => {
           </div>
 
           <div className="flex items-center lg:order-2">
-            <NavLink
-              to="/login"
-              className="text-blue-900 bg-white hover:bg-gray-200 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2 lg:py-2.5 mr-2 focus:outline-none transition-all duration-300"
-            >
-              Log in
-            </NavLink>
-            <NavLink
-              to="/signup"
-              className="text-cyan-900 bg-white hover:bg-gray-200 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-lg px-5 py-2 lg:py-2.5 focus:outline-none transition-all duration-300"
-            >
-              Sign Up
-            </NavLink>
+            {curUser ? (
+              <>
+                <button
+                  to="/login"
+                  type="button"
+                  onClick={handleSignout}
+                  className="text-blue-900 bg-white hover:bg-gray-200 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2 lg:py-2.5 mr-2 focus:outline-none transition-all duration-300"
+                >
+                  Signout
+                </button>
+                <NavLink
+                  to="/profile"
+                  className="text-cyan-900 bg-white hover:bg-gray-200 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-lg px-5 py-2 lg:py-2.5 focus:outline-none transition-all duration-300"
+                >
+                  {curUser.username}
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="/login"
+                  className="text-blue-900 bg-white hover:bg-gray-200 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2 lg:py-2.5 mr-2 focus:outline-none transition-all duration-300"
+                >
+                  Log in
+                </NavLink>
+                <NavLink
+                  to="/signup"
+                  className="text-cyan-900 bg-white hover:bg-gray-200 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-lg px-5 py-2 lg:py-2.5 focus:outline-none transition-all duration-300"
+                >
+                  Sign Up
+                </NavLink>
+              </>
+            )}
           </div>
-          
         </div>
       </nav>
     </header>

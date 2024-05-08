@@ -12,6 +12,7 @@ import Quiz from "./components/Quiz";
 import Games from "./components/Games";
 import CW from './components/CW';
 import PSF from './components/psf';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/cbot" element={<CBot />} />
         <Route path="/quizzes" element={<Quiz />} />
         <Route path="/games" element={<Games />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/cw" element={<CW />} />
         <Route path="/psf" element={<PSF />} />
         
