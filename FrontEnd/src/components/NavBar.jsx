@@ -5,17 +5,16 @@ import InteractiveFeatures from "./InteractiveFeatures";
 import "./css/navbar.css";
 
 const NavBar = () => {
+  const [curUser, setCurUser] = useState(null)
 
-  const curUser = JSON.parse(localStorage.getItem("cur_user"));
+  const user = JSON.parse(localStorage.getItem("cur_user"));
+  if (user) {
+    setCurUser(user)
+  }
 
   const handleSignout = async () => {
-    await fetch('https://behind-the-smiles.onrender.com/logout', {
-      method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-    });
-
+    await fetch('https://behind-the-smiles.onrender.com/logout');
+    setCurUser(null);
     localStorage.removeItem("cur_user")
   }
 
@@ -58,7 +57,7 @@ const NavBar = () => {
                 </button>
                 <NavLink
                   to="/profile"
-                  className="text-cyan-900 bg-white hover:bg-gray-200 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-lg px-5 py-2 lg:py-2.5 focus:outline-none transition-all duration-300"
+                  className="text-white hover:bg-gray-500 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-lg px-5 py-2 lg:py-2.5 focus:outline-none transition-all duration-300"
                 >
                   {curUser.username}
                 </NavLink>
