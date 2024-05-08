@@ -1,20 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import More from "./More";
 import InteractiveFeatures from "./InteractiveFeatures";
 import "./css/navbar.css";
 
 const NavBar = () => {
-  const [curUser, setCurUser] = useState(null)
 
   const user = JSON.parse(localStorage.getItem("cur_user"));
-  if (user) {
-    setCurUser(user)
-  }
 
   const handleSignout = async () => {
     await fetch('https://epics-8d25.onrender.com/logout');
-    setCurUser(null);
     localStorage.removeItem("cur_user")
   }
 
@@ -45,7 +40,7 @@ const NavBar = () => {
           </div>
 
           <div className="flex items-center lg:order-2">
-            {curUser ? (
+            {user ? (
               <>
                 <button
                   to="/login"
@@ -59,7 +54,7 @@ const NavBar = () => {
                   to="/profile"
                   className="text-white hover:bg-gray-500 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-lg px-5 py-2 lg:py-2.5 focus:outline-none transition-all duration-300"
                 >
-                  {curUser.username}
+                  {user.username}
                 </NavLink>
               </>
             ) : (
