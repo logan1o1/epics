@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://behind-the-smiles.onrender.com/login', {
+      const response = await fetch('https://epics-8d25.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

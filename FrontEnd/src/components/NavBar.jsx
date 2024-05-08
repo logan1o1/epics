@@ -13,7 +13,7 @@ const NavBar = () => {
   }
 
   const handleSignout = async () => {
-    await fetch('https://behind-the-smiles.onrender.com/logout');
+    await fetch('https://epics-8d25.onrender.com/logout');
     setCurUser(null);
     localStorage.removeItem("cur_user")
   }

@@ -11,7 +11,7 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://behind-the-smiles.onrender.com/signup', {
+      const response = await fetch('https://epics-8d25.onrender.com/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
